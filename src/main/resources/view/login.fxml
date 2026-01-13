@@ -24,7 +24,7 @@
                prefWidth="250"/>
 <Button text="Login"
         prefWidth="250"
-        onAction="#handleLogin"/>
+        onAction="#login"/>
 <Label fx:id="lblMessage"
        textFill="red"/>
 
