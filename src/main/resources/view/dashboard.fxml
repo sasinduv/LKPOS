@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.Dashboard"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<VBox spacing="15" alignment="CENTER"
+      xmlns:fx="http://jafx.com/fxml"
+      fx:controller="lk.pos.controller.DashboardController">
+
+    <Label fx:id="lblWelcome" style="-fx-font-size:18"/>
+    <Button fx:id="btnProduct" text="Product Management"/>
+    <Button fx:id="btnInventory" text="Inventory Management"/>
+    <Button fx:id="btnSales" text="Sales &amp; Billing"/>
+    <Button fx:id="btnReports" text="Reports &amp; Analytics"/>
+
+</VBox>
+
