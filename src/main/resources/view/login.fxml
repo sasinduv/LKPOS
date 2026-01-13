@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="lk.pos.controller.loginController"
+      alignment="CENTER"
+      spacing="15">
+
+<padding>
+<Insets top="20" right="20" bottom="20" left="20"/>
+</padding>
+
+<Label text="Retail POS System"
+       style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+<TextField fx:id="txtUsername"
+           promptText="Username"
+           prefWidth="250"/>
+
+<PasswordField fx:id="txtPassword"
+               promptText="Password"
+               prefWidth="250"/>
+<Button text="Login"
+        prefWidth="250"
+        onAction="#handleLogin"/>
+<Label fx:id="lblMessage"
+       textFill="red"/>
+
+
+        </VBox>
