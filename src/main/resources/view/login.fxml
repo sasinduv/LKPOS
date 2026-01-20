@@ -28,5 +28,4 @@
 <Label fx:id="lblMessage"
        textFill="red"/>
 
-
-        </VBox>
+</VBox>
