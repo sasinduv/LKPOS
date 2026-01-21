@@ -4,6 +4,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import lk.pos.dao.ProductDAO?>
+
 <VBox xmlns:fx="http://javafx.com/fxml" spacing="10"
       alignment="CENTER"
       fx:controller="lk.pos.controller.ProductController">
@@ -14,6 +17,13 @@
 
     <Button text="Add Product" onAction="#addProduct"/>
 
-    <TableView fx:id="tblProduct"/>
+    <TableView fx:id="tblProduct" prefHeight="300">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colName" text="Name" prefWidth="150"/>
+            <TableColumn fx:id="colPrice" text="Price" prefWidth="100"/>
+            <TableColumn fx:id="colQty" text="Qty" prefWidth="100"/>
+        </columns>
+    </TableView>
 </VBox>
 

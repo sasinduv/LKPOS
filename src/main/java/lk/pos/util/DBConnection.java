@@ -5,17 +5,20 @@ import java.sql.DriverManager;
 
 public class DBConnection {
 
-    private static Connection connection;
+    private static final String URL =
+            "jdbc:mysql://localhost:3306/retail_pos?useSSL=false&serverTimezone=UTC";
+    private static final String USER = "root";
+    private static final String PASS = "";
+
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static Connection getConnection() throws Exception {
-
-        if (connection == null) {
-            connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/retail_pos?useSSL=false&serverTimezone=UTC",
-                    "root",
-                    ""
-            );
-        }
-        return connection;
+        return DriverManager.getConnection(URL, USER, PASS);
     }
 }
