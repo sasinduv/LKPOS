@@ -64,4 +64,51 @@ public class ProductController {
         txtQty.clear();
     }
 
+    @FXML
+    public void editProduct() {
+        Product selected = tblProduct.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            try {
+                ProductDAO.update(
+                        selected.getId(),
+                        txtName.getText(),
+                        Double.parseDouble(txtPrice.getText()),
+                        Integer.parseInt(txtQty.getText())
+                );
+                loadProducts();
+                txtName.clear();
+                txtPrice.clear();
+                txtQty.clear();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            showAlert("Please select a product to edit.");
+        }
+    }
+
+    @FXML
+    public void deleteProduct() {
+        Product selected = tblProduct.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            try {
+                ProductDAO.delete(selected.getId());
+                loadProducts();
+                txtName.clear();
+                txtPrice.clear();
+                txtQty.clear();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            showAlert("Please select a product to delete.");
+        }
+    }
+
+    private void showAlert(String msg) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
 }

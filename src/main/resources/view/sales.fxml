@@ -10,9 +10,22 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="lk.pos.controller.SalesController">
 
-    <TextField fx:id="txtTotal" promptText="Total Amount"/>
-    <ComboBox fx:id="cmbPayment"/>
+    <ComboBox fx:id="cmbProduct" promptText="Select Product"/>
+    <TextField fx:id="txtPrice" promptText="Price" editable="false"/>
+    <TextField fx:id="txtQty" promptText="Quantity"/>
 
-    <Button text="Complete Sale" onAction="#completeSale"/>
+    <Button text="Add to Bill" onAction="#addItem"/>
+
+    <TableView fx:id="tblBill" prefHeight="200"/>
+
+    <Label fx:id="lblTotal" text="Total: 0.00"/>
+
+    <TextField fx:id="txtCash" promptText="Cash Given"/>
+    <Label fx:id="lblBalance" text="Balance: 0.00"/>
+
+    <ComboBox fx:id="cmbPayment"/>
+    <Button text="Complete Sale &amp; Download Bill" onAction="#completeSale"/>
+
 </VBox>
+
 

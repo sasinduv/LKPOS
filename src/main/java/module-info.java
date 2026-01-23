@@ -3,6 +3,7 @@ module lk.pos {
     requires javafx.fxml;
     requires java.sql;
     requires mysql.connector.j;
+    requires com.github.librepdf.openpdf;
 
     opens lk.pos.controller to javafx.fxml;
     exports lk.pos;
