@@ -16,6 +16,8 @@
     <TextField fx:id="txtQty" promptText="Quantity"/>
 
     <Button text="Add Product" onAction="#addProduct"/>
+    <Button text="Edit Selected" onAction="#editProduct"/>
+    <Button text="Delete Selected" onAction="#deleteProduct"/>
 
     <TableView fx:id="tblProduct" prefHeight="300">
         <columns>

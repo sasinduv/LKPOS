@@ -34,12 +34,25 @@ public class DatabaseInitializer {
             )
         """;
 
+        String saleBill = """
+                CREATE TABLE IF NOT EXISTS sale_item (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    sale_id INT,
+                    product_id INT,
+                    qty INT,
+                    price DECIMAL(10,2),
+                    FOREIGN KEY (sale_id) REFERENCES sale(id),
+                    FOREIGN KEY (product_id) REFERENCES product(id)
+                )
+                """;
+
         try (Connection con = DBConnection.getConnection();
              Statement st = con.createStatement()) {
 
             st.execute(userTable);
             st.execute(productTable);
             st.execute(saleTable);
+            st.execute(saleBill);
 
             System.out.println("All tables checked/created successfully");
 
