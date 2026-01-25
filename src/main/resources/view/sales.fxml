@@ -90,5 +90,11 @@
                 "/>
 
     </VBox>
+    <VBox fx:id="cardBox" spacing="5">
+        <TextField fx:id="txtCardNumber" promptText="Card Number"/>
+        <TextField fx:id="txtExpiry" promptText="MM/YY"/>
+        <TextField fx:id="txtCVV" promptText="CVV"/>
+    </VBox>
+
 
 </AnchorPane>

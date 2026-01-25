@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import lk.pos.dao.ProductDAO;
 import lk.pos.dao.SalesDAO;
 import lk.pos.model.Product;
@@ -23,6 +24,12 @@ public class SalesController {
     @FXML private Label lblBalance;
 
     @FXML private TableView<SalesItem> tblBill;
+
+    @FXML private VBox cardBox;
+    @FXML private TextField txtCardNumber;
+    @FXML private TextField txtExpiry;
+    @FXML private TextField txtCVV;
+
 
     // ✅ REQUIRED VARIABLES
     private ObservableList<SalesItem> billList = FXCollections.observableArrayList();
@@ -50,6 +57,30 @@ public class SalesController {
                 txtPrice.setText(String.valueOf(p.getPrice()));
             }
         });
+//card payment
+        cardBox.setVisible(false);
+
+        cmbPayment.setOnAction(e -> {
+            String method = cmbPayment.getValue();
+            cardBox.setVisible("CARD".equals(method));
+        });
+
+
+        txtCash.textProperty().addListener((obs, oldVal, newVal) -> {
+            try {
+                double cash = Double.parseDouble(newVal);
+                double balance = cash - total;
+
+                if (balance >= 0) {
+                    lblBalance.setText("Balance: " + String.format("%.2f", balance));
+                } else {
+                    lblBalance.setText("Balance: 0.00");
+                }
+            } catch (NumberFormatException e) {
+                lblBalance.setText("");
+            }
+        });
+
 
         setupTable();
     }
@@ -73,10 +104,22 @@ public class SalesController {
     void addItem() {
 
         Product p = cmbProduct.getValue();
-        int qty = Integer.parseInt(txtQty.getText());
 
         if (p == null) {
             alert("Select a product!");
+            return;
+        }
+
+        double qty;
+        try {
+            qty = Double.parseDouble(txtQty.getText()); // ✅ float qty
+        } catch (NumberFormatException e) {
+            alert("Enter valid quantity!");
+            return;
+        }
+
+        if (qty <= 0) {
+            alert("Quantity must be greater than 0");
             return;
         }
 
@@ -95,22 +138,62 @@ public class SalesController {
                 itemTotal
         ));
 
-        lblTotal.setText("Total: " + total);
+        lblTotal.setText("Total: " + String.format("%.2f", total));
+
+        // ✅ RESET FIELDS
+        txtQty.clear();
+        txtPrice.clear();
+        cmbProduct.setValue(null);
     }
 
-    // ✅ FIXED METHOD NAME
     @FXML
     void completeSale() throws Exception {
 
-        double cash = Double.parseDouble(txtCash.getText());
-        double balance = cash - total;
-
-        if (balance < 0) {
-            alert("Insufficient cash!");
+        if (cmbPayment.getValue() == null) {
+            alert("Select payment method!");
             return;
         }
 
-        lblBalance.setText("Balance: " + balance);
+        if ("CARD".equals(cmbPayment.getValue())) {
+
+            if (txtCardNumber.getText().isEmpty()
+                    || txtExpiry.getText().isEmpty()
+                    || txtCVV.getText().isEmpty()) {
+                alert("Enter card details!");
+                return;
+            }
+
+            // 💳 Here you can simulate payment success
+            // (real payment gateway comes later)
+        }
+
+        double cash = 0;
+        double balance = 0;
+
+        if ("CASH".equals(cmbPayment.getValue())) {
+
+            if (txtCash.getText().isEmpty()) {
+                alert("Enter cash amount!");
+                return;
+            }
+
+            try {
+                cash = Double.parseDouble(txtCash.getText());
+            } catch (NumberFormatException e) {
+                alert("Invalid cash amount!");
+                return;
+            }
+
+            balance = cash - total;
+
+            if (balance < 0) {
+                alert("Insufficient cash!");
+                return;
+            }
+
+            lblBalance.setText("Balance: " + String.format("%.2f", balance));
+        }
+
 
         int saleId = SalesDAO.saveSale(total, cmbPayment.getValue());
 
@@ -119,17 +202,12 @@ public class SalesController {
             ProductDAO.reduceQty(item.getProductId(), item.getQty());
         }
 
-        BillPDFGenerator.generate(
-                saleId,
-                billList,
-                total,
-                cash,
-                balance
-        );
+        BillPDFGenerator.generate(saleId, billList, total, cash, balance);
 
         alert("Sale completed & bill downloaded!");
         reset();
     }
+
 
     private void reset() {
         billList.clear();
@@ -138,7 +216,16 @@ public class SalesController {
         lblBalance.setText("");
         txtCash.clear();
         txtQty.clear();
+        txtPrice.clear();
+
+        txtCardNumber.clear();
+        txtExpiry.clear();
+        txtCVV.clear();
+
+        cmbPayment.setValue(null);
+        cardBox.setVisible(false);
     }
+
 
     private void alert(String msg) {
         new Alert(Alert.AlertType.WARNING, msg).show();

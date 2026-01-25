@@ -9,25 +9,25 @@ import java.util.List;
 
 public class ProductDAO {
 
-    public static void save(String name, double price, int qty) throws Exception {
+    public static void save(String name, double price, double qty) throws Exception {
         Connection con = DBConnection.getConnection();
         PreparedStatement pst = con.prepareStatement(
                 "INSERT INTO product(name,price,qty) VALUES (?,?,?)"
         );
         pst.setString(1, name);
         pst.setDouble(2, price);
-        pst.setInt(3, qty);
+        pst.setDouble(3, qty);
         pst.executeUpdate();
     }
 
-    public static void update(int id, String name, double price, int qty) throws Exception {
+    public static void update(int id, String name, double price, double qty) throws Exception {
         Connection con = DBConnection.getConnection();
         PreparedStatement pst = con.prepareStatement(
                 "UPDATE product SET name=?, price=?, qty=? WHERE id=?"
         );
         pst.setString(1, name);
         pst.setDouble(2, price);
-        pst.setInt(3, qty);
+        pst.setDouble(3, qty);
         pst.setInt(4, id);
         pst.executeUpdate();
     }
@@ -71,13 +71,20 @@ public class ProductDAO {
              ));
          }
          return list;
-        }public static void reduceQty(int productId, int soldQty) throws Exception {
-        Connection con = DBConnection.getConnection();
-        PreparedStatement pst = con.prepareStatement("UPDATE product SET qty = qty - ? WHERE id=?");
-        pst.setInt(1, soldQty);
-        pst.setInt(2, productId);
-        pst.executeUpdate();
         }
 
+    public static void reduceQty(int productId, double qty) throws Exception {
 
+        Connection con = DBConnection.getConnection();
+        PreparedStatement pst = con.prepareStatement(
+                "UPDATE product SET qty = qty - ? WHERE id = ?"
+        );
+
+        pst.setDouble(1, qty);
+        pst.setInt(2, productId);
+
+        pst.executeUpdate();
     }
+
+
+}

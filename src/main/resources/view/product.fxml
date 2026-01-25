@@ -1,31 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import lk.pos.dao.ProductDAO?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" spacing="10"
-      alignment="CENTER"
-      fx:controller="lk.pos.controller.ProductController">
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="lk.pos.controller.ProductController"
+      spacing="15"
+      alignment="TOP_CENTER">
 
-    <TextField fx:id="txtName" promptText="Product Name"/>
-    <TextField fx:id="txtPrice" promptText="Price"/>
-    <TextField fx:id="txtQty" promptText="Quantity"/>
+    <!-- Padding MUST be Insets -->
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
 
-    <Button text="Add Product" onAction="#addProduct"/>
-    <Button text="Edit Selected" onAction="#editProduct"/>
-    <Button text="Delete Selected" onAction="#deleteProduct"/>
+    <!-- Title -->
+    <Label text="Product Management"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
 
+    <!-- ================= Product Form ================= -->
+    <GridPane hgap="10" vgap="10">
+
+        <Label text="Product Name"
+               GridPane.columnIndex="0"
+               GridPane.rowIndex="0"/>
+        <TextField fx:id="txtName"
+                   promptText="e.g. Sugar"
+                   GridPane.columnIndex="1"
+                   GridPane.rowIndex="0"/>
+
+        <Label text="Price"
+               GridPane.columnIndex="0"
+               GridPane.rowIndex="1"/>
+        <TextField fx:id="txtPrice"
+                   promptText="250.00"
+                   GridPane.columnIndex="1"
+                   GridPane.rowIndex="1"/>
+
+        <Label text="Quantity"
+               GridPane.columnIndex="0"
+               GridPane.rowIndex="2"/>
+        <TextField fx:id="txtQty"
+                   promptText="0.750 (kg)"
+                   GridPane.columnIndex="1"
+                   GridPane.rowIndex="2"/>
+
+        <Button text="Add Product"
+                onAction="#addProduct"
+                prefWidth="120"
+                GridPane.columnIndex="0"
+                GridPane.rowIndex="3"/>
+
+        <Button text="Edit Selected"
+                onAction="#editProduct"
+                prefWidth="120"
+                GridPane.columnIndex="1"
+                GridPane.rowIndex="3"/>
+
+        <Button text="Delete Selected"
+                onAction="#deleteProduct"
+                prefWidth="120"
+                GridPane.columnIndex="1"
+                GridPane.rowIndex="4"/>
+    </GridPane>
+
+    <!-- ================= Product Table ================= -->
     <TableView fx:id="tblProduct" prefHeight="300">
         <columns>
-            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="colName" text="Name" prefWidth="150"/>
+            <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+            <TableColumn fx:id="colName" text="Name" prefWidth="180"/>
             <TableColumn fx:id="colPrice" text="Price" prefWidth="100"/>
-            <TableColumn fx:id="colQty" text="Qty" prefWidth="100"/>
+            <TableColumn fx:id="colQty" text="Qty (kg)" prefWidth="120"/>
         </columns>
     </TableView>
-</VBox>
 
+</VBox>
