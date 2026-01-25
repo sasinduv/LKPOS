@@ -4,6 +4,10 @@
 <?import javafx.scene.control.* ?>
 <?import javafx.scene.layout.* ?>
 
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <VBox spacing="20"
       alignment="CENTER"
       xmlns:fx="http://javafx.com/fxml"
@@ -38,6 +42,23 @@
             <Label fx:id="lblQty"
                    style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
         </VBox>
+        <BarChart fx:id="barChart" prefWidth="400">
+            <xAxis>
+                <CategoryAxis label="Month"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="Sales"/>
+            </yAxis>
+        </BarChart>
+
+        <PieChart fx:id="pieChart" prefWidth="300"/>
+        <Button text="Export Report as PDF"
+                onAction="#exportPDF"
+                style="
+                -fx-background-color: #FF9800;
+                -fx-text-fill: white;
+                -fx-font-weight: bold;
+            "/>
 
     </HBox>
 

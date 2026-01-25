@@ -20,10 +20,15 @@ public class BillPDFGenerator {
 
         Document document = new Document();
 
+        String userHome = System.getProperty("user.home");
+
         PdfWriter.getInstance(
                 document,
-                new FileOutputStream("Bill_" + saleId + ".pdf")
+                new FileOutputStream(
+                        userHome + "/Desktop/Bill_" + saleId + ".pdf"
+                )
         );
+
 
         document.open();
 
