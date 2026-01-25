@@ -20,7 +20,7 @@ public class ProductController {
     @FXML private TableColumn<Product, Integer> colId;
     @FXML private TableColumn<Product, String> colName;
     @FXML private TableColumn<Product, Double> colPrice;
-    @FXML private TableColumn<Product, Integer> colQty;
+    @FXML private TableColumn<Product, Double> colQty;
 
     public void initialize() {
         colId.setCellValueFactory(data -> data.getValue().idProperty().asObject());
@@ -36,7 +36,7 @@ public class ProductController {
         try {
             String name = txtName.getText();
             double price = Double.parseDouble(txtPrice.getText());
-            int qty = Integer.parseInt(txtQty.getText());
+            double qty = Integer.parseInt(txtQty.getText());
 
             ProductDAO.save(name, price, qty);
 
@@ -73,7 +73,7 @@ public class ProductController {
                         selected.getId(),
                         txtName.getText(),
                         Double.parseDouble(txtPrice.getText()),
-                        Integer.parseInt(txtQty.getText())
+                        Double.parseDouble(txtQty.getText())
                 );
                 loadProducts();
                 txtName.clear();

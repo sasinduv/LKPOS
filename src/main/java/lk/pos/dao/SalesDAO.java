@@ -36,7 +36,7 @@ public class SalesDAO {
 
         pst.setInt(1, saleId);
         pst.setInt(2, item.getProductId());
-        pst.setInt(3, item.getQty());
+        pst.setDouble(3, item.getQty());
         pst.setDouble(4, item.getTotal());
 
         pst.executeUpdate();
