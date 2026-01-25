@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.* ?>
+
+<VBox spacing="20"
+      alignment="CENTER"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="lk.pos.controller.ReportController"
+      style="-fx-background-color: #F4F6F9"
+>
+    <padding>
+        <Insets top="30" bottom="30" left="40" right="40"/>
+    </padding>
+
+    <Label text="Report &amp; Analytics"
+           style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="20">
+        <VBox spacing="10"
+              style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10;">
+            <Label text="Today's Sales"/>
+            <Label fx:id="lblToday"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        </VBox>
+
+        <VBox spacing="10"
+              style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10;">
+            <Label text="Monthly Sales"/>
+            <Label fx:id="lblMonth"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        </VBox>
+
+        <VBox spacing="10"
+              style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10;">
+            <Label text="Products Sold"/>
+            <Label fx:id="lblQty"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        </VBox>
+
+    </HBox>
+
+
+</VBox>

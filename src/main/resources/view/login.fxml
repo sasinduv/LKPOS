@@ -2,30 +2,53 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="lk.pos.controller.loginController"
-      alignment="CENTER"
-      spacing="15">
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="lk.pos.controller.loginController"
+            style="-fx-background-color: linear-gradient(to bottom right, #1e3c72, #2a5298);">
 
-<padding>
-<Insets top="20" right="20" bottom="20" left="20"/>
-</padding>
+    <VBox alignment="CENTER"
+          spacing="15"
+          prefWidth="350"
+          style="-fx-background-color: white; -fx-background-radius: 12;"
+          AnchorPane.topAnchor="100"
+          AnchorPane.leftAnchor="200"
+          AnchorPane.rightAnchor="200">
 
-<Label text="Retail POS System"
-       style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-<TextField fx:id="txtUsername"
-           promptText="Username"
-           prefWidth="250"/>
+        <padding>
+            <Insets top="30" bottom="30" left="30" right="30"/>
+        </padding>
 
-<PasswordField fx:id="txtPassword"
-               promptText="Password"
-               prefWidth="250"/>
-<Button text="Login"
-        prefWidth="250"
-        onAction="#login"/>
-<Label fx:id="lblMessage"
-       textFill="red"/>
+        <Label text="Retail POS System"
+               style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
 
-</VBox>
+        <Label text="Login to continue"
+               style="-fx-text-fill: #666;"/>
+
+        <TextField fx:id="txtUsername"
+                   promptText="Username"
+                   prefHeight="40"
+                   style="-fx-background-radius: 8;"/>
+
+        <PasswordField fx:id="txtPassword"
+                       promptText="Password"
+                       prefHeight="40"
+                       style="-fx-background-radius: 8;"/>
+
+        <Button text="LOGIN"
+                prefHeight="40"
+                prefWidth="250"
+                onAction="#login"
+                style="
+                    -fx-background-color: #2a5298;
+                    -fx-text-fill: white;
+                    -fx-font-weight: bold;
+                    -fx-background-radius: 8;
+                "/>
+
+        <Label fx:id="lblMessage"
+               style="-fx-text-fill: red;"/>
+
+    </VBox>
+</AnchorPane>

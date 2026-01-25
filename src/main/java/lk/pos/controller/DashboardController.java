@@ -49,6 +49,12 @@ public class DashboardController {
         loadUI("/view/sales.fxml", "Sales & Billing");
     }
 
+    @FXML
+    void openReports(ActionEvent event) throws Exception {
+        loadUI("/view/report.fxml", "Report & Analytics");
+    }
+
+
     private void loadUI(String fxml, String title) throws Exception {
         Stage stage = new Stage();
         stage.setScene(new Scene(

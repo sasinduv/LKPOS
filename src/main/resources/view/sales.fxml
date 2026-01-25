@@ -1,31 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10" alignment="CENTER"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="lk.pos.controller.SalesController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="lk.pos.controller.SalesController"
+            style="-fx-background-color: linear-gradient(to bottom right, #141E30, #243B55);">
 
-    <ComboBox fx:id="cmbProduct" promptText="Select Product"/>
-    <TextField fx:id="txtPrice" promptText="Price" editable="false"/>
-    <TextField fx:id="txtQty" promptText="Quantity"/>
+    <VBox spacing="15"
+          alignment="CENTER"
+          prefWidth="450"
+          style="-fx-background-color: white; -fx-background-radius: 15;"
+          AnchorPane.topAnchor="40"
+          AnchorPane.leftAnchor="200"
+          AnchorPane.rightAnchor="200">
 
-    <Button text="Add to Bill" onAction="#addItem"/>
+        <padding>
+            <Insets top="25" bottom="25" left="30" right="30"/>
+        </padding>
 
-    <TableView fx:id="tblBill" prefHeight="200"/>
+        <Label text="Sales &amp; Billing"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
-    <Label fx:id="lblTotal" text="Total: 0.00"/>
+        <!-- Product Selection -->
+        <ComboBox fx:id="cmbProduct"
+                  promptText="Select Product"
+                  prefHeight="40"
+                  prefWidth="300"/>
 
-    <TextField fx:id="txtCash" promptText="Cash Given"/>
-    <Label fx:id="lblBalance" text="Balance: 0.00"/>
+        <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="txtPrice"
+                       promptText="Price"
+                       editable="false"
+                       prefHeight="40"
+                       prefWidth="145"/>
+            <TextField fx:id="txtQty"
+                       promptText="Quantity"
+                       prefHeight="40"
+                       prefWidth="145"/>
+        </HBox>
 
-    <ComboBox fx:id="cmbPayment"/>
-    <Button text="Complete Sale &amp; Download Bill" onAction="#completeSale"/>
+        <Button text="Add to Bill"
+                prefHeight="40"
+                prefWidth="300"
+                onAction="#addItem"
+                style="
+                    -fx-background-color: #4CAF50;
+                    -fx-text-fill: white;
+                    -fx-font-weight: bold;
+                    -fx-background-radius: 8;
+                "/>
 
-</VBox>
+        <!-- Bill Table -->
+        <TableView fx:id="tblBill"
+                   prefHeight="220"
+                   prefWidth="350"
+                   style="-fx-border-radius: 8;"/>
 
+        <!-- Totals -->
+        <Label fx:id="lblTotal"
+               text="Total: 0.00"
+               style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
 
+        <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="txtCash"
+                       promptText="Cash Given"
+                       prefHeight="40"
+                       prefWidth="170"/>
+            <Label fx:id="lblBalance"
+                   text="Balance: 0.00"
+                   style="-fx-font-size: 14px;"/>
+        </HBox>
+
+        <ComboBox fx:id="cmbPayment"
+                  promptText="Payment Method"
+                  prefHeight="40"
+                  prefWidth="300"/>
+
+        <Button text="Complete Sale &amp; Download Bill"
+                prefHeight="42"
+                prefWidth="300"
+                onAction="#completeSale"
+                style="
+                    -fx-background-color: #FF9800;
+                    -fx-text-fill: white;
+                    -fx-font-weight: bold;
+                    -fx-background-radius: 8;
+                "/>
+
+    </VBox>
+
+</AnchorPane>
